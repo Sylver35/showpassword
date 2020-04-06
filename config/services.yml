@@ -1,0 +1,9 @@
+services:
+    sylver35.showpassword.listener:
+        class: sylver35\showpassword\event\listener
+        arguments:
+            - '@template'
+            - '@user'
+            - '@language'
+        tags:
+            - { name: event.listener }
