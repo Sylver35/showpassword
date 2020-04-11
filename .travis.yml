@@ -4,8 +4,6 @@ dist: xenial
 matrix:
     include:
         - php: 7.1
-          env: DB=none;NOTESTS=1
-        - php: 7.1
           env: DB=mariadb
         - php: 7.1
           env: DB=postgres
