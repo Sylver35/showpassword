@@ -10,6 +10,9 @@
 namespace sylver35\showpassword\event;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use \phpbb\template\template;
+use \phpbb\user;
+use \phpbb\language\language;
 
 /**
 * Event listener
@@ -25,11 +28,14 @@ class listener implements EventSubscriberInterface
 	/** @var \phpbb\language\language */
 	protected $language;
 
-	public function __construct(\phpbb\template\template $template, \phpbb\user $user, \phpbb\language\language $language)
+	/**
+	 * Controller constructor
+	 */
+	public function __construct(template $template, user $user, language $language)
 	{
-		$this->template		= $template;
-		$this->user			= $user;
-		$this->language		= $language;
+		$this->template = $template;
+		$this->user = $user;
+		$this->language = $language;
 	}
 
 	static public function getSubscribedEvents()
