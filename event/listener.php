@@ -10,9 +10,9 @@
 namespace sylver35\showpassword\event;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use \phpbb\template\template;
-use \phpbb\user;
-use \phpbb\language\language;
+use phpbb\template\template;
+use phpbb\user;
+use phpbb\language\language;
 
 /**
 * Event listener
