@@ -75,17 +75,18 @@ class listener implements EventSubscriberInterface
 	 */
 	public function login_show_password($event)
 	{
+		$template_data = array($event['login_box_template_data']);
 		if ($event['admin'] !== false)
 		{
-			$event['login_box_template_data'] = array_merge($event['login_box_template_data'], array(
+			$event['login_box_template_data'] = array_merge($template_data, array(
 				'SHOW_PASSWORD'			=> true,
 				'SHOW_PASSWORD_LOGIN'	=> true,
-				'ID_CREDENTIAL'			=> $event['login_box_template_data']['PASSWORD_CREDENTIAL'],
+				'ID_CREDENTIAL'			=> $template_data['PASSWORD_CREDENTIAL'],
 			));
 		}
 		else
 		{
-			$event['login_box_template_data'] = array_merge($event['login_box_template_data'], array(
+			$event['login_box_template_data'] = array_merge($template_data, array(
 				'SHOW_PASSWORD'			=> $this->not_registered(),
 				'SHOW_PASSWORD_LOGIN'	=> true,
 				'ID_CREDENTIAL'			=> 'password',
@@ -98,7 +99,8 @@ class listener implements EventSubscriberInterface
 	 */
 	public function ucp_show_password($event)
 	{
-		$event['tpl_ary'] = array_merge($event['tpl_ary'], array(
+		$tpl_ary = array($event['tpl_ary']);
+		$event['tpl_ary'] = array_merge($tpl_ary, array(
 			'SHOW_PASSWORD'		=> $this->not_registered(),
 			'ID_CREDENTIAL'		=> 'password',
 		));
