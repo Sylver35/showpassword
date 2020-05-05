@@ -8,7 +8,6 @@
 */
 
 namespace sylver35\showpassword\event;
-
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use phpbb\template\template;
 use phpbb\user;
@@ -71,22 +70,21 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	 * @param \phpbb\event\data $event
+	 * @param array $event
 	 */
 	public function login_show_password($event)
 	{
-		$template_data = array($event['login_box_template_data']);
 		if ($event['admin'] !== false)
 		{
-			$event['login_box_template_data'] = array_merge($template_data, array(
+			$event['login_box_template_data'] = array_merge($event['login_box_template_data'], array(
 				'SHOW_PASSWORD'			=> true,
 				'SHOW_PASSWORD_LOGIN'	=> true,
-				'ID_CREDENTIAL'			=> $template_data['PASSWORD_CREDENTIAL'],
+				'ID_CREDENTIAL'			=> $event['login_box_template_data']['PASSWORD_CREDENTIAL'],
 			));
 		}
 		else
 		{
-			$event['login_box_template_data'] = array_merge($template_data, array(
+			$event['login_box_template_data'] = array_merge($event['login_box_template_data'], array(
 				'SHOW_PASSWORD'			=> $this->not_registered(),
 				'SHOW_PASSWORD_LOGIN'	=> true,
 				'ID_CREDENTIAL'			=> 'password',
