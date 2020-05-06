@@ -93,7 +93,7 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	 * @param \phpbb\event\data $event
+	 * @param array $event
 	 */
 	public function ucp_show_password($event)
 	{
