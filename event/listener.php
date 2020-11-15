@@ -39,12 +39,12 @@ class listener implements EventSubscriberInterface
 
 	static public function getSubscribedEvents()
 	{
-		return array(
-			'core.index_modify_page_title'			=> array(array('show_password'), array('load_language')),
-			'core.login_forum_box'					=> array(array('forum_show_password'), array('load_language')),
-			'core.login_box_modify_template_data'	=> array(array('login_show_password'), array('load_language')),
-			'core.ucp_login_link_template_after'	=> array(array('ucp_show_password'), array('load_language')),
-		);
+		return [
+			'core.index_modify_page_title'			=> [['show_password'], ['load_language']],
+			'core.login_forum_box'					=> [['forum_show_password'], ['load_language']],
+			'core.login_box_modify_template_data'	=> [['login_show_password'], ['load_language']],
+			'core.ucp_login_link_template_after'	=> [['ucp_show_password'], ['load_language']],
+		];
 	}
 
 	public function load_language()
@@ -54,19 +54,19 @@ class listener implements EventSubscriberInterface
 
 	public function show_password()
 	{
-		$this->template->assign_vars(array(
+		$this->template->assign_vars([
 			'SHOW_PASSWORD'		=> $this->not_registered(),
 			'ID_CREDENTIAL'		=> 'password',
-		));
+		]);
 	}
 
 	public function forum_show_password()
 	{
-		$this->template->assign_vars(array(
+		$this->template->assign_vars([
 			'SHOW_PASSWORD'			=> true,
 			'SHOW_PASSWORD_FORUM'	=> true,
 			'ID_CREDENTIAL'			=> 'password',
-		));
+		]);
 	}
 
 	/**
@@ -76,19 +76,19 @@ class listener implements EventSubscriberInterface
 	{
 		if ($event['admin'] !== false)
 		{
-			$event['login_box_template_data'] = array_merge($event['login_box_template_data'], array(
+			$event['login_box_template_data'] = array_merge($event['login_box_template_data'], [
 				'SHOW_PASSWORD'			=> true,
 				'SHOW_PASSWORD_LOGIN'	=> true,
 				'ID_CREDENTIAL'			=> $event['login_box_template_data']['PASSWORD_CREDENTIAL'],
-			));
+			]);
 		}
 		else
 		{
-			$event['login_box_template_data'] = array_merge($event['login_box_template_data'], array(
+			$event['login_box_template_data'] = array_merge($event['login_box_template_data'], [
 				'SHOW_PASSWORD'			=> $this->not_registered(),
 				'SHOW_PASSWORD_LOGIN'	=> true,
 				'ID_CREDENTIAL'			=> 'password',
-			));
+			]);
 		}
 	}
 
@@ -97,11 +97,11 @@ class listener implements EventSubscriberInterface
 	 */
 	public function ucp_show_password($event)
 	{
-		$tpl_ary = array($event['tpl_ary']);
-		$event['tpl_ary'] = array_merge($tpl_ary, array(
+		$tpl_ary = [$event['tpl_ary']];
+		$event['tpl_ary'] = array_merge($tpl_ary, [
 			'SHOW_PASSWORD'		=> $this->not_registered(),
 			'ID_CREDENTIAL'		=> 'password',
-		));
+		]);
 	}
 
 	private function not_registered()
