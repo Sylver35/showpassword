@@ -11,6 +11,9 @@
 #assistant-btn:focus {
 	outline: none;
 }
+#passTxt {
+	background-color: #E8F4E6;
+}
 div.input-visual-control {
 	display: block;
 	position: absolute;

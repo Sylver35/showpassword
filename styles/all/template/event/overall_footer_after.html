@@ -1,6 +1,10 @@
 {% if SHOW_PASSWORD %}
 <script>
-var credential = '{{ ID_CREDENTIAL }}', show = '{{ lang("BZH_SHOW") | escape("js") }}', hide = '{{ lang("BZH_HIDE") | escape("js") }}', password = '{{ lang("PASSWORD") | escape("js") }}';
+var credential = '{{ ID_CREDENTIAL }}', show = '{{ lang('BZH_SHOW') | escape('js') }}', hide = '{{ lang('BZH_HIDE') | escape('js') }}', password = '{{ lang('PASSWORD') | escape('js') }}';
+var content = '<div id="assistant-visual" class="input-visual-control"><div class="assistant-area">';
+content += '<div id="assistant-icon" class="eui-svg-assistant eui-icon-assistant-hide">';
+content += '<button id="assistant-btn" type="button" onclick="passSwitch();" class="transparent-btn" title="'+show+'">';
+content += '<span id="assistant-msg" class="sr-only">'+show+'</span></button></div></div></div>';
 /** Modifie the Dom **/
 if($('#'+credential)){
 	$('<div id="passContainer"></div>').insertBefore('#'+credential);
@@ -12,7 +16,7 @@ if($('#'+credential)){
 	{% else %}
 	$('<input type="text" id="passTxt" size="10" class="inputbox" title="'+password+'" spellcheck="false" autocorrect="off"></input>').insertAfter('#'+credential).hide();
 	{% endif %}
-	$('<div id="assistant-visual" class="input-visual-control"><div class="assistant-area"><div id="assistant-icon" class="eui-svg-assistant eui-icon-assistant-hide"><button id="assistant-btn" type="button" onclick="passSwitch();" class="transparent-btn" title="'+show+'"><span id="assistant-msg" class="sr-only">'+show+'</span></button></div></div></div>').insertAfter('#passTxt');
+	$(content).insertAfter('#passTxt');
 }
 function passSwitch(){
 	if(!$('#passTxt').is(':visible')){
