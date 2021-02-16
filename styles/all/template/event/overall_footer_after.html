@@ -1,38 +1,13 @@
 {% if SHOW_PASSWORD %}
-<script>
-var credential = '{{ ID_CREDENTIAL }}', show = '{{ lang('BZH_SHOW') | escape('js') }}', hide = '{{ lang('BZH_HIDE') | escape('js') }}', password = '{{ lang('PASSWORD') | escape('js') }}';
-var content = '<div id="assistant-visual" class="input-visual-control"><div class="assistant-area">';
-content += '<div id="assistant-icon" class="eui-svg-assistant eui-icon-assistant-hide">';
-content += '<button id="assistant-btn" type="button" onclick="passSwitch();" class="transparent-btn" title="'+show+'">';
-content += '<span id="assistant-msg" class="sr-only">'+show+'</span></button></div></div></div>';
-/** Modifie the Dom **/
-if($('#'+credential)){
-	$('<div id="passContainer"></div>').insertBefore('#'+credential);
-	$('#passContainer').prepend($('#'+credential));
-	{% if SHOW_PASSWORD_LOGIN %}
-	$('<input type="text" tabindex="2" id="passTxt" size="25" class="inputbox autowidth" title="'+password+'" spellcheck="false" autocorrect="off"></input>').insertAfter('#'+credential).hide();
-	{% elseif SHOW_PASSWORD_FORUM %}
-	$('<input type="text" tabindex="1" id="passTxt" size="25" class="inputbox narrow" title="'+password+'" spellcheck="false" autocorrect="off"></input>').insertAfter('#'+credential).hide();
-	{% else %}
-	$('<input type="text" id="passTxt" size="10" class="inputbox" title="'+password+'" spellcheck="false" autocorrect="off"></input>').insertAfter('#'+credential).hide();
-	{% endif %}
-	$(content).insertAfter('#passTxt');
-}
-function passSwitch(){
-	if(!$('#passTxt').is(':visible')){
-		$('#assistant-icon').removeClass('eui-icon-assistant-hide').addClass('eui-icon-assistant-show');
-		$('#'+credential).addClass('off-screen').prop('aria-hidden', true).on('input', function(){$('#passTxt').val($('#'+credential).val());});
-		$('#passTxt').val($('#'+credential).val()).show().prop('aria-hidden', false).on('input', function(){$('#'+credential).val($('#passTxt').val());});
-		$('#assistant-msg').text(hide);
-		$('#assistant-btn').attr('title', hide);
-	}else{
-		$('#assistant-icon').removeClass('eui-icon-assistant-show').addClass('eui-icon-assistant-hide');
-		$('#passTxt').hide().prop('aria-hidden', true).off('input');
-		$('#'+credential).removeClass('off-screen').prop('aria-hidden', false).off('input', function(){$('#passTxt').val($('#'+credential).val());});
-		$('#assistant-msg').text(show);
-		$('#assistant-btn').attr('title', show);
-		$('#passTxt').off('input focus').off('blur');
-	}
-}
-</script>
+	<script>
+		var credential			= '{{ ID_CREDENTIAL | escape('js') }}';
+		var affiche				= '{{ lang("BZH_SHOW") | escape('js') }}';
+		var cache				= '{{ lang("BZH_HIDE") | escape('js') }}';
+		var password			= '{{ lang("PASSWORD") | escape('js') }}';
+		var showPasswordLogin	= '{{ SHOW_PASSWORD_LOGIN | escape('js') }}';
+		var showPasswordForum	= '{{ SHOW_PASSWORD_FORUM | escape('js') }}';
+		var showPasswordQuick	= '{{ SHOW_PASSWORD_QUICK | escape('js') }}';
+	</script>
+
+	{% INCLUDEJS '@sylver35_showpassword/show_pass.js' %}
 {% endif %}

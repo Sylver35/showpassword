@@ -1,21 +1,22 @@
 <?php
 /**
-*
-* @package		Breizh Show Password Extension
-* @copyright	(c) 2020 Sylver35  https://breizhcode.com
-* @license		http://opensource.org/licenses/gpl-license.php GNU Public License
-*
-*/
+ *
+ * @package      Breizh Show Password Extension
+ * @copyright    (c) 2020 Sylver35  https://breizhcode.com
+ * @license      http://opensource.org/licenses/gpl-license.php GNU Public License
+ *
+ */
 
 namespace sylver35\showpassword\event;
+
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use phpbb\template\template;
 use phpbb\user;
 use phpbb\language\language;
 
 /**
-* Event listener
-*/
+ * Event listener
+ */
 class listener implements EventSubscriberInterface
 {
 	/** @var \phpbb\template\template */
@@ -33,17 +34,18 @@ class listener implements EventSubscriberInterface
 	public function __construct(template $template, user $user, language $language)
 	{
 		$this->template = $template;
-		$this->user = $user;
+		$this->user     = $user;
 		$this->language = $language;
 	}
 
-	static public function getSubscribedEvents()
+	public static function getSubscribedEvents()
 	{
 		return [
-			'core.index_modify_page_title'			=> [['show_password'], ['load_language']],
-			'core.login_forum_box'					=> [['forum_show_password'], ['load_language']],
+			'core.index_modify_page_title' 			=> [['show_password'], ['load_language']],
+			'core.login_forum_box' 					=> [['forum_show_password'], ['load_language']],
 			'core.login_box_modify_template_data'	=> [['login_show_password'], ['load_language']],
-			'core.ucp_login_link_template_after'	=> [['ucp_show_password'], ['load_language']],
+			'core.ucp_login_link_template_after' 	=> [['ucp_show_password'], ['load_language']],
+			'paybas.quicklogin.login_forum_box'		=> [['quick_login'], ['load_language']],
 		];
 	}
 
@@ -52,20 +54,34 @@ class listener implements EventSubscriberInterface
 		$this->language->add_lang('common', 'sylver35/showpassword');
 	}
 
+	public function quick_login($event)
+	{
+		// Need to check that the QL is loaded otherwise this will
+		// overwrite the variables from the other events.
+		if ($event['ql_flag'])
+		{
+			$tpl_vars 							= $event['tpl_vars'];
+			$tpl_vars['SHOW_PASSWORD'] 			= $this->not_registered();
+			$tpl_vars['ID_CREDENTIAL'] 			= 'ql-password';
+			$tpl_vars['SHOW_PASSWORD_QUICK']	= true;
+			$event['tpl_vars'] 					= $tpl_vars;
+		}
+	}
+
 	public function show_password()
 	{
 		$this->template->assign_vars([
-			'SHOW_PASSWORD'		=> $this->not_registered(),
-			'ID_CREDENTIAL'		=> 'password',
+			'SHOW_PASSWORD' 		=> $this->not_registered(),
+			'ID_CREDENTIAL' 		=> 'password',
 		]);
 	}
 
 	public function forum_show_password()
 	{
 		$this->template->assign_vars([
-			'SHOW_PASSWORD'			=> true,
+			'SHOW_PASSWORD' 		=> true,
 			'SHOW_PASSWORD_FORUM'	=> true,
-			'ID_CREDENTIAL'			=> 'password',
+			'ID_CREDENTIAL' 		=> 'password',
 		]);
 	}
 
@@ -76,18 +92,18 @@ class listener implements EventSubscriberInterface
 	{
 		if ($event['admin'] !== false)
 		{
-			$event['login_box_template_data'] = array_merge($event['login_box_template_data'], [
-				'SHOW_PASSWORD'			=> true,
-				'SHOW_PASSWORD_LOGIN'	=> true,
-				'ID_CREDENTIAL'			=> $event['login_box_template_data']['PASSWORD_CREDENTIAL'],
+			$event['login_box_template_data']	= array_merge($event['login_box_template_data'], [
+				'SHOW_PASSWORD' 				=> true,
+				'SHOW_PASSWORD_LOGIN' 			=> true,
+				'ID_CREDENTIAL' 				=> $event['login_box_template_data']['PASSWORD_CREDENTIAL'],
 			]);
 		}
 		else
 		{
-			$event['login_box_template_data'] = array_merge($event['login_box_template_data'], [
-				'SHOW_PASSWORD'			=> $this->not_registered(),
-				'SHOW_PASSWORD_LOGIN'	=> true,
-				'ID_CREDENTIAL'			=> 'password',
+			$event['login_box_template_data']	= array_merge($event['login_box_template_data'], [
+				'SHOW_PASSWORD' 				=> $this->not_registered(),
+				'SHOW_PASSWORD_LOGIN' 			=> true,
+				'ID_CREDENTIAL' 				=> 'password',
 			]);
 		}
 	}
@@ -97,10 +113,9 @@ class listener implements EventSubscriberInterface
 	 */
 	public function ucp_show_password($event)
 	{
-		$tpl_ary = [$event['tpl_ary']];
-		$event['tpl_ary'] = array_merge($tpl_ary, [
-			'SHOW_PASSWORD'		=> $this->not_registered(),
-			'ID_CREDENTIAL'		=> 'password',
+		$event['tpl_ary']	= array_merge($event['tpl_ary'], [
+			'SHOW_PASSWORD' => $this->not_registered(),
+			'ID_CREDENTIAL' => 'password',
 		]);
 	}
 
@@ -110,7 +125,9 @@ class listener implements EventSubscriberInterface
 		{
 			return true;
 		}
-
-		return false;
+		else
+		{
+			return false;
+		}
 	}
 }

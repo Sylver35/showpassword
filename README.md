@@ -1,9 +1,5 @@
 # phpBB Breizh Show Password Extension
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Sylver35/showpassword/badges/quality-score.png?b=1.1.0)](https://scrutinizer-ci.com/g/Sylver35/showpassword/?branch=1.1.0)
-[![Build Status](https://scrutinizer-ci.com/g/Sylver35/showpassword/badges/build.png?b=1.1.0)](https://scrutinizer-ci.com/g/Sylver35/showpassword/build-status/1.1.0)
-[![Code Intelligence Status](https://scrutinizer-ci.com/g/Sylver35/showpassword/badges/code-intelligence.svg?b=1.1.0)](https://scrutinizer-ci.com/code-intelligence)
-
 ## Install
 
 1. Download the latest release.
