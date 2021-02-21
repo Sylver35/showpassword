@@ -3,8 +3,8 @@
     "type": "phpbb-extension",
     "description": "This extension allows you to show password in login forms with 1 clic",
     "homepage": "https://breizhcode.com",
-    "version": "1.1.0",
-    "time": "2020-03-01",
+    "version": "1.2.0",
+    "time": "2021-02-21",
     "keywords": [
         "phpbb",
         "extension",
