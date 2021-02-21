@@ -2,7 +2,7 @@
 /**
 *
 * @package		Breizh Show Password Extension
-* @copyright	(c) 2020 Sylver35  https://breizhcode.com
+* @copyright	(c) 2020-2021 Sylver35  https://breizhcode.com
 * @license		http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -14,8 +14,8 @@ use phpbb\user;
 use phpbb\language\language;
 
 /**
-* Event listener
-*/
+ * Event listener
+ */
 class listener implements EventSubscriberInterface
 {
 	/** @var \phpbb\template\template */
@@ -37,13 +37,14 @@ class listener implements EventSubscriberInterface
 		$this->language = $language;
 	}
 
-	static public function getSubscribedEvents()
+	public static function getSubscribedEvents()
 	{
 		return [
 			'core.index_modify_page_title'			=> [['show_password'], ['load_language']],
 			'core.login_forum_box'					=> [['forum_show_password'], ['load_language']],
 			'core.login_box_modify_template_data'	=> [['login_show_password'], ['load_language']],
 			'core.ucp_login_link_template_after'	=> [['ucp_show_password'], ['load_language']],
+			'paybas.quicklogin.login_forum_box'		=> [['quick_login'], ['load_language']],
 		];
 	}
 
@@ -55,8 +56,9 @@ class listener implements EventSubscriberInterface
 	public function show_password()
 	{
 		$this->template->assign_vars([
-			'SHOW_PASSWORD'		=> $this->not_registered(),
-			'ID_CREDENTIAL'		=> 'password',
+			'SHOW_PASSWORD'			=> $this->not_registered(),
+			'SHOW_PASSWORD_INDEX'	=> true,
+			'ID_CREDENTIAL'			=> 'password',
 		]);
 	}
 
@@ -97,11 +99,29 @@ class listener implements EventSubscriberInterface
 	 */
 	public function ucp_show_password($event)
 	{
-		$tpl_ary = [$event['tpl_ary']];
-		$event['tpl_ary'] = array_merge($tpl_ary, [
-			'SHOW_PASSWORD'		=> $this->not_registered(),
-			'ID_CREDENTIAL'		=> 'password',
+		$event['tpl_ary'] = array_merge($event['tpl_ary'], [
+			'SHOW_PASSWORD'			=> true,
+			'SHOW_PASSWORD_UCP'		=> true,
+			'ID_CREDENTIAL'			=> 'login_password',
 		]);
+	}
+
+	/**
+	 * @param array $event
+	 */
+	public function quick_login($event)
+	{
+		// Need to check that the QL is loaded otherwise this will
+		// overwrite the variables from the other events.
+		if ($event['ql_flag'])
+		{
+			$event['tpl_vars'] = array_merge($event['tpl_vars'], [
+				'SHOW_PASSWORD'			=> $this->not_registered(),
+				'SHOW_PASSWORD_QUICK'	=> true,
+				'SHOW_PASSWORD_INDEX'	=> false,
+				'ID_CREDENTIAL'			=> 'ql-password',
+			]);
+		}
 	}
 
 	private function not_registered()
