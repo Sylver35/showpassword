@@ -17,7 +17,7 @@
     "authors": [
         {
             "name": "sylver35",
-			"email": "webmaster@breizhcode.com",
+            "email": "webmaster@breizhcode.com",
             "homepage": "https://breizhcode.com",
             "role": "Developer"
         }
@@ -28,9 +28,9 @@
         "phpbb/phpbb": ">=3.3.13"
     },
     "extra": {
-        "display-name": "Breizh Show Password ✅",
+        "display-name": "Breizh Show Password",
         "soft-require": {
-            "phpbb/phpbb": ">=3.3.0"
+            "phpbb/phpbb": ">=3.3.13"
         },
         "version-check": {
             "host": "breizhversions.com",
