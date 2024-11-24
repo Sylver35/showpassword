@@ -4,8 +4,8 @@
 * Breizh Show Password extension [German (Casual Honorifics)]
 *
 * @package language
-* @copyright (c) 2019-2021 Breizh Code  https://breizhcode.com
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) 2019-2023 Breizh Code  https://breizhcode.com
+* @license https://opensource.org/licenses/gpl-license.php GNU Public License
 * @translator Sylver35  https://breizhcode.com
 * 
 */

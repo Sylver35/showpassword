@@ -17,23 +17,26 @@
     "authors": [
         {
             "name": "sylver35",
+			"email": "webmaster@breizhcode.com",
             "homepage": "https://breizhcode.com",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": ">=7.1.3",
-        "phpbb/phpbb": ">=3.3.0"
+        "php": ">=7.2",
+        "composer/installers": "~2.0.0",
+        "phpbb/phpbb": ">=3.3.13"
     },
     "extra": {
-        "display-name": "Breizh Show Password",
+        "display-name": "Breizh Show Password ✅",
         "soft-require": {
             "phpbb/phpbb": ">=3.3.0"
         },
         "version-check": {
-            "host": "versions.breizhcode.com",
+            "host": "breizhversions.com",
             "directory": "/showpassword",
-            "filename": "/version_check.json"
+            "filename": "/version_check.json",
+            "ssl": true
         }
     }
 }
