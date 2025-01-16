@@ -1,7 +1,7 @@
 <?php
 /** 
 *
-* Breizh Show Password extension [Dutch]
+* Breizh Show Password extension [Português]
 *
 * @package language
 * @copyright (c) 2020-2025 Breizh Code  https://breizhcode.com
@@ -36,10 +36,10 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 //
 // Some characters you may want to copy&paste:
-// ’ » “ ” …
+// ’ « » “ ” …
 //
 
 $lang = array_merge($lang, array(
-	'BZH_SHOW'			=> 'toon wachtwoord',
-	'BZH_HIDE'			=> 'wachtwoord verbergen',
+	'BZH_SHOW'			=> 'mostrar senha',
+	'BZH_HIDE'			=> 'ocultar senha',
 ));

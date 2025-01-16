@@ -1,16 +1,16 @@
 {% if SHOW_PASSWORD %}
 <script>
-	var showPass = {
-		credential :	'{{ ID_CREDENTIAL }}',
-		show :			'{{ lang("BZH_SHOW") | escape('js') }}',
-		hide :			'{{ lang("BZH_HIDE") | escape('js') }}',
-		password :		'{{ lang("PASSWORD") | escape('js') }}',
-		passwordUcp :	{% if SHOW_PASSWORD_UCP %}true{% else %}false{% endif %},
-		passwordIndex :	{% if SHOW_PASSWORD_INDEX %}true{% else %}false{% endif %},
-		passwordLogin :	{% if SHOW_PASSWORD_LOGIN %}true{% else %}false{% endif %},
-		passwordForum :	{% if SHOW_PASSWORD_FORUM %}true{% else %}false{% endif %},
-		passwordQuick :	{% if SHOW_PASSWORD_QUICK %}true{% else %}false{% endif %},
-	};
+var showPass = {
+	credential :	'{{ ID_CREDENTIAL }}',
+	show :			'{{ lang("BZH_SHOW") | escape("js") }}',
+	hide :			'{{ lang("BZH_HIDE") | escape("js") }}',
+	password :		'{{ lang("PASSWORD") | escape("js") }}',
+	passwordUcp :	{% if SHOW_PASSWORD_UCP %}true{% else %}false{% endif %},
+	passwordIndex :	{% if SHOW_PASSWORD_INDEX %}true{% else %}false{% endif %},
+	passwordLogin :	{% if SHOW_PASSWORD_LOGIN %}true{% else %}false{% endif %},
+	passwordForum :	{% if SHOW_PASSWORD_FORUM %}true{% else %}false{% endif %},
+	passwordQuick :	{% if SHOW_PASSWORD_QUICK %}true{% else %}false{% endif %},
+};
 </script>
 
 {% INCLUDEJS '@sylver35_showpassword/show_pass.js' %}

@@ -1,3 +1,4 @@
+/** Breizh Show Password phpBB extension **/
 /** Modifie the Dom **/
 if ($('#'+showPass.credential)){
 	$('<div id="passContainer"></div>').insertBefore('#'+showPass.credential);
@@ -18,6 +19,7 @@ if ($('#'+showPass.credential)){
 	$('<div id="assistant-visual" class="input-controll-visual"><div class="assistant-area"><div id="assistant-icon" class="eui-svg-assistant eui-icon-assistant-hide"><button id="assistant-btn" type="button" onclick="passSwitch();" class="transparent-btn" title="'+showPass.show+'"><span id="assistant-msg" class="sr-only">'+showPass.show+'</span></button></div></div></div>').insertAfter('#passTxt');
 }
 
+/** Function to switch hide/show password **/
 function passSwitch(){
 	if(!$('#passTxt').is(':visible')){
 		$('#assistant-icon').removeClass('eui-icon-assistant-hide').addClass('eui-icon-assistant-show');

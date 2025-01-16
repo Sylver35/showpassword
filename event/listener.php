@@ -2,7 +2,7 @@
 /**
 *
 * @package		Breizh Show Password Extension
-* @copyright	(c) 2020-2024 Sylver35  https://breizhcode.com
+* @copyright	(c) 2020-2025 Sylver35  https://breizhcode.com
 * @license		https://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -126,7 +126,7 @@ class listener implements EventSubscriberInterface
 
 	private function not_registered()
 	{
-		if ($this->user->data['user_id'] == ANONYMOUS)
+		if ((int) $this->user->data['user_id'] === ANONYMOUS)
 		{
 			return true;
 		}

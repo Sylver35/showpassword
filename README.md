@@ -1,8 +1,8 @@
 # phpBB Breizh Show Password Extension
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Sylver35/showpassword/badges/quality-score.png?b=1.2.0)](https://scrutinizer-ci.com/g/Sylver35/showpassword/?branch=1.2.0)
-[![Build Status](https://scrutinizer-ci.com/g/Sylver35/showpassword/badges/build.png?b=1.2.0)](https://scrutinizer-ci.com/g/Sylver35/showpassword/build-status/1.2.0)
-[![Code Intelligence Status](https://scrutinizer-ci.com/g/Sylver35/showpassword/badges/code-intelligence.svg?b=1.2.0)](https://scrutinizer-ci.com/code-intelligence)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Sylver35/showpassword/badges/quality-score.png?b=1.3.0)](https://scrutinizer-ci.com/g/Sylver35/showpassword/?branch=1.3.0)
+[![Build Status](https://scrutinizer-ci.com/g/Sylver35/showpassword/badges/build.png?b=1.3.0)](https://scrutinizer-ci.com/g/Sylver35/showpassword/build-status/1.3.0)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/Sylver35/showpassword/badges/code-intelligence.svg?b=1.3.0)](https://scrutinizer-ci.com/code-intelligence)
 
 ## Install
 
@@ -22,4 +22,4 @@
 ## License
 [GNU General Public License v2](http://opensource.org/licenses/GPL-2.0)
 
-© 2024 - Sylver35
+© 2025 - Sylver35
